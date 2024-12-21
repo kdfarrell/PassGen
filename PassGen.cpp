@@ -40,7 +40,8 @@ int main() {
 	
 	
 	if (toLower(opt4) == "yes") {
-		cout << "hi";
+		cout << "Enter the sequence: ";
+		cin >> sequence;
 	}
 }
 
