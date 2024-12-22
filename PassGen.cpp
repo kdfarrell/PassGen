@@ -46,7 +46,6 @@ int main() {
 	
 	if (sequence.empty() == true) {
 		
-
 		for (int i = 0 ; i < 10; ++i){
 			
 			while (length != 0) {
