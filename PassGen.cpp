@@ -51,35 +51,34 @@ int main() {
 			
 			while (length != 0) {
 			
-			int chartype = rand() % 4 + 1;
-			
-			if (chartype == 1) {
+				int chartype = rand() % 4 + 1;
 				
-				char type1 = rand() % (122 - 97 + 1) + 97;
-				cout << type1;	
+				if (chartype == 1) {
+					
+					char type1 = rand() % (122 - 97 + 1) + 97;
+					cout << type1;	
+				}
+				if (chartype == 2) {
+					
+					char type2 = rand() % (90 - 65 + 1) + 65;
+					cout << type2;	
+				}
+				if (chartype == 3) {
+					
+					char type3 = rand() % (57 - 48 + 1) + 48;
+					cout << type3;	
+				}
+				if (chartype == 4) {
+					
+					char type4 = rand() % (47 - 33 + 1) + 33;
+					cout << type4;		
+				}
+				length--;				
 			}
-			if (chartype == 2) {
-				
-				char type2 = rand() % (90 - 65 + 1) + 65;
-				cout << type2;	
-			}
-			if (chartype == 3) {
-				
-				char type3 = rand() % (57 - 48 + 1) + 48;
-				cout << type3;	
-			}
-			if (chartype == 4) {
-				
-				char type4 = rand() % (47 - 33 + 1) + 33;
-				cout << type4;		
-			}
-			length--;				
-		}
-		cout << endl;
-		length = 8;	
-		
+			cout << endl;
+			length = 8;	
+		}	
 	}
 	return 0;
 }
-
 
