@@ -15,7 +15,7 @@ string toLower(string word) {
 int main() {
 	
 	int length;
-	string opt1, opt2, opt3, opt4;
+	string opt1, opt2, opt3, opt4, opt5;
 	string sequence, password;
 	
 	srand(time(0));
@@ -25,32 +25,36 @@ int main() {
 	cout << "Enter the Length of your password: ";
 	cin >> length;
 	
-	cout << "\nWould you like to include characters A-Z? [Yes/No]\n";
+	cout << "\nInclude lowercase letters a-z? [Yes/No]\n";
 	cin >> opt1;
 	
-	cout << "\nWould you like to include characters 0-9? [Yes/No]\n";
+	cout << "\nInclude uppercase letters A-Z? [Yes/No]\n";
 	cin >> opt2;
 	
-	cout << "\nWould you like to include special characters !@#? [Yes/No]\n";
+	cout << "\nInclude Numbers 0-9? [Yes/No]\n";
 	cin >> opt3;
+	
+	cout << "\nInclude special characters !@#? [Yes/No]\n";
+	cin >> opt4;
 	
 	cout << "\nWould you like your password to include a specific sequence. [Yes/No]\n";
 	cout << "Sequence: blueberry\n";
 	cout << "Password: =3blueberry!?a\n";
-	cin >> opt4;
+	cin >> opt5;
 	
-	if (toLower(opt4) == "yes") {
+	if (toLower(opt5) == "yes") {
 		cout << "Enter the sequence: ";
 		cin >> sequence;
 	}
 	
 	if (sequence.empty() == true) {
 		
+
 		for (int i = 0 ; i < 10; ++i){
 			
 			while (length != 0) {
 			
-				int chartype = rand() % 4 + 1;
+				int chartype = rand() % 5 + 1;
 				
 				if (chartype == 1) {
 					
