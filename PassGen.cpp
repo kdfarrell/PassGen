@@ -37,12 +37,15 @@ int main() {
 	cout << "\nInclude special characters !@#? [Yes/No]\n";
 	cin >> opt4;
 	
+	cout << "\Exclude any characters? [Yes/No]\n";
+	cin >> opt5
+	
 	cout << "\nWould you like your password to include a specific sequence. [Yes/No]\n";
 	cout << "Sequence: blueberry\n";
 	cout << "Password: =3blueberry!?a\n";
-	cin >> opt5;
+	cin >> opt6;
 	
-	if (toLower(opt5) == "yes") {
+	if (toLower(opt6) == "yes") {
 		cout << "Enter the sequence: ";
 		cin >> sequence;
 	}
