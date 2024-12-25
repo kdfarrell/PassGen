@@ -31,7 +31,7 @@ int main() {
     cout << CYAN << "This program will help you create a secure and random password.\n";
     cout << CYAN << "You will be able to customize your password based on various criteria.\n";
     cout << CYAN << "Let's get started!\n\n" << RESET;
-	
+
 	// Choosing the length of the password
 	printMessage("How long would you like your password to be?", CYAN);
     cout << BRIGHT_YELLOW << "Please enter a number between 8 and 32 (inclusive): " << RESET;
@@ -42,18 +42,17 @@ int main() {
 		if (cin.fail()) { // user enters non-numeric character
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			printMessage("Invalid input. Please enter a number between 8 and 32 (inclusive).", RED);
-			cout << RED << "Length: ";
+			printMessage("\nInvalid input. Please enter a number between 8 and 32 (inclusive).", RED);
+			cout << BRIGHT_YELLOW << "Length: " << RESET;
 		}
 		else if (length >= 8 && length <= 32) {
             break;
         } 
 		else {
             printMessage("Invalid input. Please enter a number between 8 and 32 (inclusive).", RED);
-            cout << RED << "Length: ";
+            cout << BRIGHT_YELLOW << "Length: " << RESET;
         }
 	}
-	cout << endl;
 	
 	// Choosing letters a-z
 	printMessage("\nInclude characters (a-z)?", CYAN);
@@ -63,11 +62,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -82,11 +80,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -101,11 +98,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -120,11 +116,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -139,11 +134,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -152,7 +146,8 @@ int main() {
 	
 	string exclude;
     if (choices[4] == 'Y') {
-        cout << BRIGHT_YELLOW << "What characters would you like to exclude? " << RESET;
+        cout << BRIGHT_YELLOW << "\nWhat characters would you like to exclude? ";
+        cout << "\nCharacters: " << RESET;
         cin.ignore();
         getline(cin, exclude);
     }
@@ -166,11 +161,10 @@ int main() {
     cin >> choice;
     choice = toupper(choice);
     
-    cout << endl;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	while (choice != 'Y' && choice != 'N') {
-        printMessage("Invalid input. Please enter a 'Y' or 'N'.", RED);
-        cout << BRIGHT_YELLOW << "Your choice: " << RESET;
+        printMessage("\nInvalid input. Please enter a 'Y' or 'N'.", RED);
+        cout << BRIGHT_YELLOW << "Your choice (Y/N): " << RESET;
         cin >> choice;
         choice = toupper(choice);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -179,9 +173,17 @@ int main() {
 	
 	string sequence;
     if (choices[5] == 'Y') {
-        cout << BRIGHT_YELLOW << "What characters would you like to include in the sequence? " << RESET;
+        cout << BRIGHT_YELLOW << "\nWhat characters would you like to include in the sequence? ";
+    	cout << "\nCharacters: " << RESET;
         cin.ignore();
         getline(cin, sequence);
+        
+        while (sequence.length() > length) {
+        	printMessage("\nInvalid input. Sequence is longer than length of password", RED);
+        	cout << BRIGHT_YELLOW << "Enter Sequence: " << RESET;
+        	cin.ignore();
+        	getline(cin, sequence);
+		}
     }
 	
 	printMessage("\nThank you for your input! Your password will be generated based on your selections.", GREEN);
