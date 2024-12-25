@@ -1,8 +1,10 @@
 #include <iostream>
-#include <ctime>
 #include <cstdlib>
 #include <string>
 #include <limits>
+#include <ctime>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -25,15 +27,37 @@ int main() {
 	
 	char choices[6];
 	char choice;
-	int length;
+	int length, amount;
 	
 	printMessage("--- Welcome to PassGen ---", BLUE);
     cout << CYAN << "This program will help you create a secure and random password.\n";
     cout << CYAN << "You will be able to customize your password based on various criteria.\n";
     cout << CYAN << "Let's get started!\n\n" << RESET;
+    
+    // Choosing the amount of passwords
+	printMessage("How many passwords would you like to generate?", CYAN);
+    cout << BRIGHT_YELLOW << "Please enter a number between 1 and 10 (inclusive): " << RESET;
+    
+    while (true) {
+		cin >> amount;
+		
+		if (cin.fail()) { // user enters non-numeric character
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			printMessage("\nInvalid input. Please enter a number between 1 and 10 (inclusive).", RED);
+			cout << BRIGHT_YELLOW << "Length: " << RESET;
+		}
+		else if (amount >= 1 && amount <= 10) {
+            break;
+        } 
+		else {
+            printMessage("Invalid input. Please enter a number between 1 and 10 (inclusive).", RED);
+            cout << BRIGHT_YELLOW << "Length: " << RESET;
+        }
+	}
 
 	// Choosing the length of the password
-	printMessage("How long would you like your password to be?", CYAN);
+	printMessage("\nHow long would you like your password to be?", CYAN);
     cout << BRIGHT_YELLOW << "Please enter a number between 8 and 32 (inclusive): " << RESET;
 	
 	while (true) {
@@ -145,13 +169,19 @@ int main() {
     choices[4] = choice;
 	
 	string exclude;
+	unordered_set<char> excluded;
     if (choices[4] == 'Y') {
         cout << BRIGHT_YELLOW << "\nWhat characters would you like to exclude? ";
         cout << "\nCharacters: " << RESET;
         cin.ignore();
         getline(cin, exclude);
     }
-	
+    
+    for (auto c : exclude) {
+    	excluded.insert(c);
+	}
+    
+    
 	// Include sequence of characters
 	printMessage("\nWould you like to include a specific sequence of characters?", CYAN);
     cout << CYAN << "Example: ('1234', 'abc') in your password?" << RESET << endl;
@@ -185,8 +215,113 @@ int main() {
         	getline(cin, sequence);
 		}
     }
+    
+    printMessage("\nThank you for your input! Your password will be generated based on your selections.", GREEN);
 	
-	printMessage("\nThank you for your input! Your password will be generated based on your selections.", GREEN);
-    return 0;
+	srand(time(NULL));
+	vector<string> allPasswords;
+	string password = "";
+	char selectedChar;
+	int temp = length;
+	
+	if (choices[5] == 'Y') {	
+		password = password + sequence;
+		length = length - sequence.length();
+	}
+	
+	while (length != 0) {
+		
+		int chartype = rand() % 4;
+		
+		if (chartype == 0 && choices[0] != 'N') {
+			selectedChar = rand() % (122 - 97 + 1) + 97; // a-z
+			
+			while (excluded.find(selectedChar) != excluded.end()) {
+				selectedChar = rand() % (122 - 97 + 1) + 97;
+			}
+			password = selectedChar + password;	
+			length--;
+		}
+		else if (chartype == 1 && choices[1] != 'N') {
+			selectedChar = rand() % (90 - 65 + 1) + 65; // A-Z
+			
+			while (excluded.find(selectedChar) != excluded.end()) {
+				selectedChar = rand() % (90 - 65 + 1) + 65;
+			}
+			password = selectedChar + password;	
+			length--;
+		}
+		else if (chartype == 2 && choices[2] != 'N') { // 0-9
+			selectedChar = rand() % (57 - 48 + 1) + 48;
+			
+			while (excluded.find(selectedChar) != excluded.end()) {
+				selectedChar = rand() % (57 - 48 + 1) + 48;
+			}
+			password = selectedChar + password;	
+			length--;
+		}
+		else if (chartype == 3 && choices[3] != 'N') { //Special Characters
+		
+			int typeOfSpecial = rand() % 4 + 1;
+			
+			if (typeOfSpecial == 1) {
+				selectedChar = rand() % (47 - 33 + 1) + 33;
+			
+				while (excluded.find(selectedChar) != excluded.end()) {
+					selectedChar = rand() % (47 - 33 + 1) + 33;
+				}
+				password = selectedChar + password;	
+				length--;	
+			}
+			else if (typeOfSpecial == 2) {
+				selectedChar = rand() % (64 - 58 + 1) + 58;
+			
+				while (excluded.find(selectedChar) != excluded.end()) {
+					selectedChar = rand() % (64 - 58 + 1) + 58;
+				}
+				password = selectedChar + password;	
+				length--;
+			}
+			else if (typeOfSpecial == 3) {
+				selectedChar = rand() % (96 - 91 + 1) + 91;
+			
+				while (excluded.find(selectedChar) != excluded.end()) {
+					selectedChar = rand() % (96 - 91 + 1) + 91;
+				}
+				password = selectedChar + password;	
+				length--;
+			}
+			else if (typeOfSpecial == 4) {
+				selectedChar = rand() % (126 - 123 + 1) + 123;
+			
+				while (excluded.find(selectedChar) != excluded.end()) {
+					selectedChar = rand() % (126 - 123 + 1) + 123;
+				}
+				password = selectedChar + password;	
+				length--;
+			}
+		}
+		
+		if (length == 0 && allPasswords.size() != amount) {
+			length = temp;
+			allPasswords.push_back(password);
+			password = "";
+			
+			if (choices[5] == 'Y') {	
+				password = password + sequence;
+				length = length - sequence.length();
+			}
+		}	
+	}
+	
+	cout << GREEN << "\nYour Password/s:\n" << password;
+	
+	for(auto word : allPasswords) {
+		cout << word << endl;
+	}
+    
+	
+	return 0;
 }
 
+	
