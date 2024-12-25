@@ -30,7 +30,7 @@ int main() {
     cout << CYAN << "You will be able to customize your password based on various criteria.\n";
     cout << CYAN << "Let's get started!\n\n" << RESET;
     
-    // Choosing the amount of passwords
+    // Choosing the amount of password
 	cout << CYAN << ("How many passwords would you like to generate?\n") << RESET;
     cout << BRIGHT_YELLOW << "Please enter a number between 1 and 10 (inclusive): " << RESET;
     
