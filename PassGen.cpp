@@ -245,7 +245,6 @@ int main() {
 	}
 	
     cout << GREEN << "\nThank you for your input! Your password will be generated based on your selections.\n" << RESET;
-	
 	return 0;
 }
 
