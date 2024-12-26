@@ -3,7 +3,6 @@
 #include <string>
 #include <limits>
 #include <ctime>
-#include <unordered_set>
 #include <vector>
 #include <algorithm>
 
@@ -241,7 +240,7 @@ int main() {
 			includeSimilarChars = true;
 		}
 	   	
-		// Include sequence of characters
+		// Include Duplicate Characters
 		cout << CYAN << "\nWould you like to use the same character more than once?\n" << RESET;
 	    cout << CYAN << "Example: ('1234', 'abc') in your password?" << RESET << endl;
 	    cout << YELLOW << "[Y] Yes" << RESET << endl;
@@ -273,7 +272,7 @@ int main() {
 		cout << CYAN << "Uppercase characters: " << (includeUppercase ? GREEN : RED) << (includeUppercase ? "Yes" : "No") << RESET << endl;
 		cout << CYAN << "Numeric characters: " << (includeDigits ? GREEN : RED) << (includeDigits ? "Yes" : "No") << RESET << endl;
 		cout << CYAN << "Special characters: " << (includeSpecialChars ? GREEN : RED) << (includeSpecialChars ? "Yes" : "No") << RESET << endl;
-		cout << CYAN << "Similar characters: " << (includeSimilarChars ? RED : GREEN) << (includeSimilarChars ? "No" : "Yes") << RESET << endl;
+		cout << CYAN << "Similar characters: " << (includeSimilarChars ? GREEN : RED) << (includeSimilarChars ? "Yes" : "No") << RESET << endl;
 		cout << CYAN << "Duplicate characters: " << (includeDuplicateChars ? GREEN : RED) << (includeDuplicateChars ? "Yes" : "No") << RESET << endl;
 
 		
