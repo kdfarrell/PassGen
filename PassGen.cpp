@@ -35,7 +35,8 @@ int main() {
     while (true) {
 		cin >> amount;
 		
-		if (cin.fail()) { // user enters non-numeric character
+		// user enters non-numeric character
+		if (cin.fail()) { 
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << RED << "\nInvalid input. Please enter a number between 1 and 10 (inclusive).\n" << RESET;
@@ -57,7 +58,8 @@ int main() {
 	while (true) {
 		cin >> length;
 		
-		if (cin.fail()) { // user enters non-numeric character
+		// user enters non-numeric character
+		if (cin.fail()) { 
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << RED << "\nInvalid input. Please enter a number between 8 and 32 (inclusive).\n" << RESET;
