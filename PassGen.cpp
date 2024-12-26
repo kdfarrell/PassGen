@@ -224,7 +224,7 @@ int main() {
 	        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	    }
 	       
-	    if (choice =! 'Y') {
+	    if (choice != 'Y') {
 	    	string similar = "il1Lo0OI|!";
 	    	
 	    	for (int i = 0 ; i < similar.length(); i++) {
